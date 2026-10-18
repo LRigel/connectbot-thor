@@ -43,6 +43,7 @@ object PreferenceConstants {
     const val KEYMODE: String = "keymode"
     const val KEY_ALWAYS_VISIBLE: String = "alwaysvisible"
     const val IME_TOGGLE_KEY: String = "imetogglekey"
+    const val DUAL_SCREEN_KEYBOARD: String = "dualScreenKeyboard"
     const val IME_SHORTCUT_INPUT_MODE: String = "imeShortcutInputMode"
 
     const val KEYMODE_RIGHT: String = "Use right-side keys"

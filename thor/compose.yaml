@@ -1,0 +1,21 @@
+# Build the ConnectBot APK in a container:
+#   docker compose -f thor/compose.yaml run --rm build
+services:
+  build:
+    build: .
+    working_dir: /src
+    user: "${UID:-1001}:${GID:-1001}"
+    environment:
+      HOME: /cache/home
+      # The build uid has no passwd entry, so Java would otherwise see user.home as "?".
+      JAVA_TOOL_OPTIONS: -Duser.home=/cache/home
+      GRADLE_USER_HOME: /cache/gradle
+      ANDROID_USER_HOME: /cache/android-user
+    volumes:
+      - ..:/src
+      - sdk:/opt/android-sdk
+      - gradle-cache:/cache
+    command: ./gradlew --no-daemon :app:assembleOssDebug
+volumes:
+  sdk:
+  gradle-cache:

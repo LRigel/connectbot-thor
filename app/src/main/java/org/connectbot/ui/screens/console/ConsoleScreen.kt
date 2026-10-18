@@ -158,6 +158,7 @@ import org.connectbot.ui.components.ResizeDialog
 import org.connectbot.ui.components.TERMINAL_KEYBOARD_HEIGHT_DP
 import org.connectbot.ui.components.TerminalKeyboard
 import org.connectbot.ui.components.UrlScanDialog
+import org.connectbot.ui.components.rememberDualScreenKeyboard
 import org.connectbot.ui.theme.terminal
 import org.connectbot.util.PreferenceConstants
 import org.connectbot.util.UrlUtils
@@ -665,6 +666,11 @@ fun ConsoleScreen(
     val currentBridge = uiState.bridges
         .getOrNull(uiState.currentBridgeIndex)
     val currentBridgeId = currentBridge?.host?.id
+    val dualScreenKeyboardEnabled = remember {
+        prefs.getBoolean(PreferenceConstants.DUAL_SCREEN_KEYBOARD, true)
+    }
+    // While the second display holds the keyboard, keep the main display terminal-only.
+    val dualScreenKeyboardShown = rememberDualScreenKeyboard(currentBridge, dualScreenKeyboardEnabled)
     var showConnectionInfoDialog by remember(currentBridgeId) { mutableStateOf(false) }
     val automationState by currentBridge?.automationState?.collectAsState()
         ?: remember { mutableStateOf(org.connectbot.service.automation.AutomationState()) }
@@ -1081,13 +1087,13 @@ fun ConsoleScreen(
                                 disconnected = disconnected,
                                 connecting = connecting,
                                 isActive = true,
-                                keyboardAlwaysVisible = keyboardAlwaysVisible,
+                                keyboardAlwaysVisible = keyboardAlwaysVisible && !dualScreenKeyboardShown,
                                 pgUpDnGestureEnabled = pgUpDnGestureEnabled,
-                                showSoftwareKeyboard = showSoftwareKeyboard,
+                                showSoftwareKeyboard = showSoftwareKeyboard && !dualScreenKeyboardShown,
                                 resizeSuspended = resizeSuspended,
                                 forceSize = forceSize,
                                 termFocusRequester = termFocusRequester,
-                                showExtraKeyboard = showExtraKeyboard,
+                                showExtraKeyboard = showExtraKeyboard && !dualScreenKeyboardShown,
                                 hasPlayedKeyboardAnimation = hasPlayedKeyboardAnimation,
                                 imeVisible = imeVisible,
                                 handleTerminalInteraction = {

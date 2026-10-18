@@ -76,6 +76,7 @@ data class SettingsUiState(
     val keepalive: Boolean = true,
     val alwaysvisible: Boolean = true,
     val imeTogglekey: Boolean = true,
+    val dualScreenKeyboard: Boolean = true,
     val imeShortcutInputMode: ImeShortcutInputMode = ImeShortcutInputMode.FORCE_ASCII,
     val shiftfkeys: Boolean = false,
     val ctrlfkeys: Boolean = false,
@@ -221,6 +222,7 @@ class SettingsViewModel @Inject constructor(
             keepalive = prefs.getBoolean(PreferenceConstants.KEEP_ALIVE, true),
             alwaysvisible = prefs.getBoolean(PreferenceConstants.KEY_ALWAYS_VISIBLE, true),
             imeTogglekey = prefs.getBoolean(PreferenceConstants.IME_TOGGLE_KEY, true),
+            dualScreenKeyboard = prefs.getBoolean(PreferenceConstants.DUAL_SCREEN_KEYBOARD, true),
             imeShortcutInputMode = prefs.getImeShortcutInputMode(),
             shiftfkeys = prefs.getBoolean(PreferenceConstants.SHIFT_FKEYS, false),
             ctrlfkeys = prefs.getBoolean(PreferenceConstants.CTRL_FKEYS, false),
@@ -367,6 +369,10 @@ class SettingsViewModel @Inject constructor(
 
     fun updateImeToggleKey(value: Boolean) {
         updateBooleanPref(PreferenceConstants.IME_TOGGLE_KEY, value) { copy(imeTogglekey = value) }
+    }
+
+    fun updateDualScreenKeyboard(value: Boolean) {
+        updateBooleanPref(PreferenceConstants.DUAL_SCREEN_KEYBOARD, value) { copy(dualScreenKeyboard = value) }
     }
 
     fun updateImeShortcutInputMode(value: ImeShortcutInputMode) {

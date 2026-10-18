@@ -204,6 +204,7 @@ fun SettingsScreen(
         onKeepAliveChange = viewModel::updateKeepAlive,
         onAlwaysVisibleChange = viewModel::updateAlwaysVisible,
         onImeToggleKeyChange = viewModel::updateImeToggleKey,
+        onDualScreenKeyboardChange = viewModel::updateDualScreenKeyboard,
         onImeShortcutInputModeChange = viewModel::updateImeShortcutInputMode,
         onShiftFkeysChange = viewModel::updateShiftFkeys,
         onCtrlFkeysChange = viewModel::updateCtrlFkeys,
@@ -253,6 +254,7 @@ fun SettingsScreenContent(
     onKeepAliveChange: (Boolean) -> Unit,
     onAlwaysVisibleChange: (Boolean) -> Unit,
     onImeToggleKeyChange: (Boolean) -> Unit,
+    onDualScreenKeyboardChange: (Boolean) -> Unit,
     onImeShortcutInputModeChange: (ImeShortcutInputMode) -> Unit,
     onShiftFkeysChange: (Boolean) -> Unit,
     onCtrlFkeysChange: (Boolean) -> Unit,
@@ -636,6 +638,15 @@ fun SettingsScreenContent(
                     summary = stringResource(R.string.pref_imetogglekey_summary),
                     checked = uiState.imeTogglekey,
                     onCheckedChange = onImeToggleKeyChange,
+                )
+            }
+
+            item {
+                SwitchPreference(
+                    title = stringResource(R.string.pref_dual_screen_keyboard_title),
+                    summary = stringResource(R.string.pref_dual_screen_keyboard_summary),
+                    checked = uiState.dualScreenKeyboard,
+                    onCheckedChange = onDualScreenKeyboardChange,
                 )
             }
 
@@ -1584,6 +1595,7 @@ private fun SettingsScreenPreview() {
             onKeepAliveChange = {},
             onAlwaysVisibleChange = {},
             onImeToggleKeyChange = {},
+            onDualScreenKeyboardChange = {},
             onImeShortcutInputModeChange = {},
             onShiftFkeysChange = {},
             onCtrlFkeysChange = {},

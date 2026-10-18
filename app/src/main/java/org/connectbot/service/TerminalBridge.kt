@@ -841,6 +841,22 @@ class TerminalBridge {
     }
 
     /**
+     * Type one character from an on-screen keyboard, applying and then clearing the
+     * Ctrl and Alt modifiers held by [keyHandler].
+     */
+    fun typeCharacter(codePoint: Int) {
+        sendBytes(
+            encodeTerminalCharacter(
+                codePoint,
+                ctrl = keyListener.isCtrlActive(),
+                alt = keyListener.isAltActive(),
+                charset = charset(encoding),
+            ),
+        )
+        keyListener.clearTransients()
+    }
+
+    /**
      * Enqueue a flush after any pending writes. Serialized with writes so the
      * flush happens only after preceding bytes have been sent to the transport.
      */

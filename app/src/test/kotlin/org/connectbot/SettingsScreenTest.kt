@@ -410,6 +410,7 @@ class SettingsScreenTest {
                     onAlwaysVisibleChange = {},
                     onSwipeSessionsChange = {},
                     onImeToggleKeyChange = {},
+                    onDualScreenKeyboardChange = {},
                     onImeShortcutInputModeChange = onImeShortcutInputModeChange,
                     onShiftFkeysChange = {},
                     onCtrlFkeysChange = {},

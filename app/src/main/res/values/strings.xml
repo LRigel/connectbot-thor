@@ -290,6 +290,10 @@
 	<string name="pref_imetogglekey_title">Show IME toggle key</string>
 	<!-- Summary for the IME toggle key preference -->
 	<string name="pref_imetogglekey_summary">Add an IME button to the special keys row that toggles compose mode for languages requiring a composition buffer (Japanese, Chinese, Korean, etc.)</string>
+	<!-- Title for the preference that shows a full terminal keyboard on a second display (e.g. the AYN Thor's bottom screen) -->
+	<string name="pref_dual_screen_keyboard_title">Keyboard on second screen</string>
+	<!-- Summary for the second-screen keyboard preference -->
+	<string name="pref_dual_screen_keyboard_summary">On dual-screen devices, show a full terminal keyboard on the other display instead of the on-screen keyboard</string>
 	<!-- Title for choosing how the full IME handles a terminal shortcut after Ctrl or Alt is tapped -->
 	<string name="pref_ime_shortcut_mode_title">Full IME Ctrl/Alt shortcuts</string>
 	<!-- Choice that leaves full IME behavior unchanged when Ctrl or Alt is tapped -->
